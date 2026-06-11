@@ -1,0 +1,28 @@
+services:
+  api:
+    build: .
+    command: uvicorn bookforge.orchestrator.main:app --host 0.0.0.0 --port 8000
+    env_file: .env
+    environment:
+      BF_REDIS_URL: redis://redis:6379/0
+      BF_DATABASE_URL: postgresql+psycopg://bookforge:bookforge@postgres/bookforge
+    ports: ["8000:8000"]
+    volumes: ["./data:/app/data"]
+    depends_on: [redis, postgres]
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: bookforge
+      POSTGRES_PASSWORD: bookforge
+      POSTGRES_DB: bookforge
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+  n8n:
+    image: n8nio/n8n
+    ports: ["5678:5678"]
+    volumes: ["n8n_data:/home/node/.n8n"]
+volumes:
+  pgdata:
+  n8n_data:

@@ -1,0 +1,25 @@
+[project]
+name = "bookforge-v2"
+version = "0.1.0"
+description = "Fabrica autonoma de libros con agent swarm - Infinity Ascend Software"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.2",
+    "anthropic>=0.40",
+    "httpx>=0.27",
+    "sqlalchemy>=2.0",
+    "pillow>=10.0",
+    "ebooklib>=0.18",
+    "reportlab>=4.0",
+]
+
+[project.optional-dependencies]
+publish = ["playwright>=1.44"]
+redis = ["redis>=5.0"]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

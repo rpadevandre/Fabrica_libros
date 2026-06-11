@@ -1,0 +1,11 @@
+pen_name: "Infinity Ascend Press"
+line_slug: "ia-press"
+palette: ["#0EA5E9", "#0F172A", "#F8FAFC"]
+title_font: "DejaVuSans-Bold"
+body_font: "DejaVuSans"
+cover_style_prompt: >
+  Modern minimalist nonfiction cover art, deep navy background with a single
+  bold geometric light-beam motif in electric blue, high contrast, clean
+  negative space in upper third and center, premium tech-forward aesthetic,
+  no text, no letters
+tone: "Directo, practico, sin hype. Habla a profesionales que valoran su tiempo."
