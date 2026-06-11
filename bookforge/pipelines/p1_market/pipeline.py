@@ -58,13 +58,14 @@ class MarketIntelligencePipeline:
 
     async def scout_niches(self, seed_interests: list[str], n: int = 10,
                            extra_context: str = "") -> list[NicheCandidate]:
+        external_block = f"Datos externos:\n{extra_context}" if extra_context else ""
         prompt = (
             f"Genera {n} candidatos de nicho para libros autopublicados en "
             f"KDP con demanda real y competencia abordable.\n"
             f"Intereses semilla del publisher: {', '.join(seed_interests)}.\n"
             f"Tipos validos: nonfiction_howto, workbook, guide, low_content, "
             f"fiction_novella.\n"
-            f"{('Datos externos:\n' + extra_context) if extra_context else ''}"
+            f"{external_block}"
             f"\nPara cada candidato incluye señales de demanda concretas "
             f"(busquedas, comunidades, tendencias)."
         )
@@ -76,12 +77,13 @@ class MarketIntelligencePipeline:
 
     async def analyze_competition(self, niche: str,
                                   extra_context: str = "") -> CompetitionReport:
+        external_block = f"Datos de scraping/Rocket:\n{extra_context}" if extra_context else ""
         prompt = (
             f"Analiza la competencia en Amazon para el nicho: '{niche}'.\n"
             f"Identifica hasta 10 competidores tipicos del top de la "
             f"categoria, sus debilidades (lo que se quejan los lectores en "
             f"reviews de 3 estrellas) y los gaps de contenido del mercado.\n"
-            f"{('Datos de scraping/Rocket:\n' + extra_context) if extra_context else ''}"
+            f"{external_block}"
         )
         return await self.llm.complete_structured(
             prompt, CompetitionReport, system=SYSTEM_BASE,

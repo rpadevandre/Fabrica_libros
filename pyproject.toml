@@ -21,5 +21,9 @@ publish = ["playwright>=1.44"]
 redis = ["redis>=5.0"]
 dev = ["pytest>=8.0", "pytest-asyncio>=0.23"]
 
+[tool.setuptools.packages.find]
+include = ["bookforge*"]
+exclude = ["brands*", "tests*"]
+
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

@@ -16,6 +16,10 @@ venv/
 .coverage
 htmlcov/
 
+# Local runtime artifacts
+bookforge.db
+data/
+
 # IDE
 .vscode/
 .idea/
